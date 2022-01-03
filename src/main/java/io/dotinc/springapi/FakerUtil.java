@@ -4,9 +4,7 @@ import com.github.javafaker.Faker;
 import io.dotinc.springapi.model.BookModel;
 import io.dotinc.springapi.model.BookStoreModel;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class FakerUtil {
 
@@ -26,8 +24,8 @@ public abstract class FakerUtil {
         return books;
     }
 
-    public static List<BookStoreModel> initBookStores() {
-        List<BookStoreModel> bookStores = new ArrayList<>();
+    public static Map<String, BookStoreModel> initBookStores() {
+        Map<String, BookStoreModel> bookStores = new HashMap<>();
         Faker faker = new Faker();
         for(int i = 0; i < 10; i ++) {
             BookStoreModel bookStore = new BookStoreModel();
@@ -35,7 +33,7 @@ public abstract class FakerUtil {
             bookStore.setName(faker.company().name());
             bookStore.setAddress(faker.address().fullAddress());
             bookStore.setBooks(initBooks());
-            bookStores.add(bookStore);
+            bookStores.put(bookStore.getId(), bookStore);
         }
 
         return bookStores;

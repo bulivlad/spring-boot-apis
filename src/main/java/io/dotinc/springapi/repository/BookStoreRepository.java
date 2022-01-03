@@ -7,16 +7,20 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BookStoreRepository {
-    //Consider the list of book stores as the database
-    private static List<BookStoreModel> bookStores = FakerUtil.initBookStores();
+    //Consider the map of <id, book store> as the database
+    private final static Map<String, BookStoreModel> bookStores = FakerUtil.initBookStores();
 
     public List<BookModel> findAllForStore(String storeId) {
-        return bookStores.stream()
-                .filter(b -> storeId.equals(b.getId()))
-                .findFirst().map(BookStoreModel::getBooks)
+        return bookStores.entrySet()
+                .stream()
+                .filter(b -> storeId.equals(b.getKey()))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .map(BookStoreModel::getBooks)
                 .orElse(new ArrayList<>());
     }
 }
