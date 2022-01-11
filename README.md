@@ -1,6 +1,13 @@
 # Spring boot API skeleton
 
-## This repo contains a spring boot api skeleton used to expose rest APIs for a book store. 
+## This repo contains a spring boot api skeleton used to expose rest APIs for a book store.
+### How to get started
+
+1. Click the green `Use this template` button 
+2. Give the repository a name and make sure it is public
+3. Click the green `Create repository from template` button
+
+:tada: That should be all. You should have now your own copy of this repository where you can start working
 ### To keep the project size as small and easy to start as possible we are using
 ```
 private final static Map<String, BookStoreModel> bookStores = FakerUtil.initBookStores();
